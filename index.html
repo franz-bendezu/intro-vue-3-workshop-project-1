@@ -10,13 +10,13 @@
   </head>
   <body>
     <div id="app">
-      <h1>Ejemplo</h1>
+      <h1 v-bind:title="subtitle">{{title}}</h1>
     </div>
 
     <!-- Import Js -->
     <script src="./main.js"></script>
     <script>
-        const appMount = app.mount('#app')
-      </script>
+      const appMount = app.mount("#app");
+    </script>
   </body>
 </html>
