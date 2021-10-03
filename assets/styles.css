@@ -1,0 +1,8 @@
+.add-todo-wrapper{
+    outline: none;
+}
+
+.add-todo-wrapper:focus{
+    border: none;
+    box-shadow: none;
+}
