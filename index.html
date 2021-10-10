@@ -28,92 +28,26 @@
         <!-- Title Section  -->
         <div class="row m-1 p-4">
           <div class="col">
-            <div class="h1 text-primary text-center p-1">
-              <i class="fas fa-check bg-primary text-white p-2"></i>
-              <span class="p-2" v-bind:title="subtitle">{{title}}</span>
-            </div>
+            <title-activities :title="title"></title-activities>
+            <div>Realizadas: {{totalDoneActitivities}}</div>
             <div>
-
-             Realizadas: {{totalDoneActitivities}}
-            </div>
-            <div>
-              <input class="input" v-model="title">
+              <input class="input" v-model="title" />
             </div>
           </div>
         </div>
         <!-- Creation Section  -->
-        <div class="row">
-          <form @submit.prevent="addTask" class="col col-11 mx-auto">
-            <div
-              class="
-                row
-                bg-white
-                rounded
-                shadow-sm
-                p-2
-                align-items-center
-                justify-content-center
-                add-todo-wrapper
-              "
-            >
-              <div class="col my-2">
-                <input
-                  v-model="currentTask.title"
-                  required
-                  class="form-control"
-                  type="text"
-                />
-              </div>
-              <div class="col-auto m-0 my-2 px-2 d-flex align-items-center">
-                <div class="input-group">
-                  <span class="input-group-text">
-                    <i
-                      class="fa fa-calendar"
-                      :class="{'text-danger': taskAlert(currentTask),'text-success': !taskAlert(currentTask)}"
-                    ></i>
-                  </span>
-                  <input
-                    v-model="currentTask.dueDate"
-                    required
-                    class="form-control rounded bg-tranparent"
-                    type="date"
-                  />
-                </div>
-              </div>
-              <div class="col-auto my-2">
-                <button class="btn btn-primary" type="submit">Agregar</button>
-              </div>
-            </div>
-          </form>
-        </div>
+        <task-form :task="currentTask" @add-task="addTask"></task-form>
         <div class="row my-4">
           <div class="col cols-12 bg-white rounded shadow-sm">
-            <div
+            <task-list-item
               v-for="(task, index) of tasks"
               :key="task.id"
-              class="row px-3 align-items-center"
+              v-model:task="tasks[index]"
             >
-              <div class="col col-auto m-1 align-items-center">
-                <div>
-                  <input
-                    v-model="task.done"
-                    class="form-check-input"
-                    type="checkbox"
-                  />
-                </div>
-              </div>
-              <div class="col col-auto m-1 align-items-center">
-                <div class="input-group">
-                  <input
-                    v-model="task.title"
-                    class="form-control form-control-lg"
-                  />
-                  <span v-if="taskAlert(task)" class="input-group-text">
-                    <i class="fas fa-exclamation-triangle text-danger"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
+              <button  @click="deleteTaskByIndex(index)" class="btn btn-danger m-2">
+                <i class="fas fa-trash"></i>
+              </button>
+            </task-list-item>
           </div>
         </div>
         <!-- List of Task Section  -->
@@ -125,6 +59,9 @@
 
     <!-- Import Js -->
     <script src="./main.js"></script>
+    <script src="./components/title.component.js"></script>
+    <script src="./components/task-form.component.js"></script>
+    <script src="./components/task-list-item.component.js"></script>
     <script>
       const appMount = app.mount("#app");
     </script>

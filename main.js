@@ -44,11 +44,12 @@ const options = {
     }
   },
   methods: {
-    taskAlert(task) {
-      return !task.done && task.dueDate < this.currentDate;
+    deleteTaskByIndex(index){
+      this.tasks.splice(index, 1)
     },
-    addTask() {
-      this.tasks.push(Object.assign({}, this.currentTask));
+    addTask(task) {
+      console.log(task  )
+      this.tasks.push(Object.assign({}, task));
       this.currentTask = Object.assign({}, this.defaultTask);
     },
   },
