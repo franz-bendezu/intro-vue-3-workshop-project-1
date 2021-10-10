@@ -30,6 +30,19 @@ const options = {
       currentDate: "2021-10-03",
     };
   },
+  computed:{
+    doneActivities(){
+      return this.tasks.filter(t=>t.done)
+    },
+    totalDoneActitivities(){
+      return this.doneActivities.length
+    }
+  },
+  watch:{
+    "currentTask.title"(newValue, oldValue){
+      console.log(newValue, oldValue)
+    }
+  },
   methods: {
     taskAlert(task) {
       return !task.done && task.dueDate < this.currentDate;
